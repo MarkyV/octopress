@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2012-12-15T19:42:51-05:00</updated>
-  <id>http://yoursite.com/</id>
+  <title><![CDATA[Data Wonder]]></title>
+  <link href="http://datawonder.co/atom.xml" rel="self"/>
+  <link href="http://datawonder.co/"/>
+  <updated>2012-12-15T22:15:06-05:00</updated>
+  <id>http://datawonder.co/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Mark Veronda]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Hello World!]]></title>
-    <link href="http://yoursite.com/blog/2012/12/15/hello-world/"/>
+    <link href="http://datawonder.co/blog/2012/12/15/hello-world/"/>
     <updated>2012-12-15T18:19:00-05:00</updated>
-    <id>http://yoursite.com/blog/2012/12/15/hello-world</id>
+    <id>http://datawonder.co/blog/2012/12/15/hello-world</id>
     <content type="html"><![CDATA[<p>Hello, World!  Have you seen my glasses?  I am setting up this blog
 because I recently set a goal for myself. Cool</p>
 ]]></content>
