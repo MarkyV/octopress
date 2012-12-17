@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Hello World!"
+date: 2012-12-17 00:00
+comments: true
+categories: [Meta]
+author: Mark Veronda
+---
+Hello, World!  For a long time, I have had the feeling that [I should write a blog](https://sites.google.com/site/steveyegge2/you-should-write-blogs), as inspired by Steve Yegge and other great bloggers.  The final impetus was [this post](http://statspotting.com/2012/12/just-finish-everything/) I saw on Hacker News that basically said, "you should finish everything."  The post really spoke to me because I have had that same attitude of, "I could finish it if I wanted."  Additionally, I always had to repeat the mantra, "always finish what you start" while practicing Tae-Kwon-Do way back in the day.  
+
+The timing of the post worked out too because I have always been interested in becoming some form of machine learning expert or data scientist (the naming doesn't matter, just something related to intelligent applications of computing and dealing with data, I guess I will still work on what that means).  Last year I joined a company and, given a choice between two teams, I joined a team with the understanding I would get to write a machine learning componenet for the team's product.  Now that hasn't panned out and I just realized, why do I need to have a job related to what I want to do in order to gain experience?  I am in the fortunate and rare job-field where I can practice what I want to do on my own.  I have already taken a machine learning course while I was at the University of Rochester and attended as many machine learning talks as I could and was a member of the machine learning committee at my job.  I have also recently come across this really great website, [Kaggle](https://www.kaggle.com/About), which is basically a data competition site that should give me exactly the experience I have been looking for-- working with real data sets in an environment where I can receive constructive feedback as to how I'm doing.  
+
+While I am still not sure how exactly this blog is going to play out, I am thinking that basically it will follow me on my 10,000 hour journey to becoming an expert on data.  Why 10,000 hours?  Peter Norvig, who has written probably the [most elucidating textbook](http://aima.cs.berkeley.edu/) ever, wrote an excellent piece about [learning to teach yourself to programming in 10 years](http://www.norvig.com/21-days.html).
