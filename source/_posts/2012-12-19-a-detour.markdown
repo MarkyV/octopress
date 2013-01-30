@@ -1,0 +1,13 @@
+---
+layout: post
+title: "A Detour"
+date: 2012-12-19 00:00
+comments: true
+categories: [Meta, SideProject]
+author: Mark Veronda
+published: false
+---
+
+I decided to take a small detour along my data-driven path because, as mentioned in my previous post, I don't quite have supreme expertise as a software developer.  So my more immediate short-term goal is to continue down that path, but my side-project is still related in a way.  I will be working on a quick Rails application.  Why Rails?  My experience and background mostly point to me being solely a Java programmer and although I have dabled in other languages throughout school and on my own, it's high time I "gain my own experience" rather than relying on a job to provide me with a well-rounded background.  So unfortunately, at this point I sound a lot like the type of person Steve Yegge [declares as an anti-pattern for hiring](https://sites.google.com/site/steveyegge2/five-essential-phone-screen-questions) a candidate (tl;dr, see "Bad-Sign #1 at the bottom, although I can handily answer those questions as posed) and I am going to change that with this application by learning a bit of Rails as I write this quick app.  Another reason is that I have always enjoyed the neat stuff that Ruby provides and I am using Heroku as my hosting solution, so the Rails integration is something to look forward to playing around with.  
+
+What is it that I will be writing?  It's an application to keep track of my 10,000 hour goal and how much time I have spent on it.  Shockingly on GitHub, there is no project called "YakShaving" and so that is what my project will be called.  For some readers, you may be wondering why "YakShaving" and why it is shocking there is no project called that.  
