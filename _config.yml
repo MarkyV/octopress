@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://MarkyV.github.io//github
+url: http://http://datawonder.co/
 title: Data Wonder
 subtitle: Wonderings and Wanderings about Data While becoming an expert
 author: Mark Veronda
@@ -16,7 +16,7 @@ description: A blog about how I became a data expert
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /github/atom.xml
+subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:
@@ -26,10 +26,10 @@ email:
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
-root: /github
+root: /
 permalink: /blog/:year/:month/:day/:title/
 source: source
-destination: public/github
+destination: public
 plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories

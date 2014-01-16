@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: 
-
-Sitemap: http://MarkyV.github.io//github/sitemap.xml 

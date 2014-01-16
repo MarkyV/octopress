@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: project | Data Wonder]]></title>
+  <link href="http://http://datawonder.co//blog/categories/project/atom.xml" rel="self"/>
+  <link href="http://http://datawonder.co//"/>
+  <updated>2014-01-16T01:08:08-05:00</updated>
+  <id>http://http://datawonder.co//</id>
+  <author>
+    <name><![CDATA[Mark Veronda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[First Data Challenge]]></title>
+    <link href="http://http://datawonder.co//blog/2013/01/30/first-data-challenge/"/>
+    <updated>2013-01-30T00:00:00-05:00</updated>
+    <id>http://http://datawonder.co//blog/2013/01/30/first-data-challenge</id>
+    <content type="html"><![CDATA[<p>Wow, just finished an intensive month of interviewing with a lot of companies and finding an apartment. I can now relax a little bit before starting my new job and get back on my path to data learning.  Although I haven&rsquo;t been doing too much with Kaggle, I have kept an eye out for what are some good resources and found a lot of different blogs and postings related to machine learning and data science to see what other people are doing in this field.  I enjoy reading news and have decided to make as much of that related to what I want to learn as possible.  I started a year ago or so with <a href="http://news.ycombinator.com/">Hacker News</a> and have found it to be a treasure trove of good advice for programming and occasionally data-related articles popup on the front-page as well, <a href="http://conductrics.com/data-science-resources-2">like today for example</a>.</p>
+
+<p>I also attended a meeting of the <a href="http://www.meetup.com/NYC-Machine-Learning/events/97871782/">NYC Machine Learning Meetup group</a>, which was a talk given by a Spotify employee about collaborative filtering as applied to music recommendations.  Although a lot of the material was just simply beyond comprehension as I wasn&rsquo;t too familiar with the techniques and equations used, I have learned that supervised collaborative filtering is pretty much matrix completion, which really drives home the point that I really need to refresh myself on Linear Algebra.  It was also very useful to see how other companies are applying recommendation techniques to their business.</p>
+
+<p>Anyway, my increased reading of data-related articles has already paid off as it has led me to work on my first data &ldquo;project&rdquo;. In December, there were <a href="http://www.empiricalzeal.com/2012/12/24/are-mass-shootings-really-random-events-a-look-at-the-us-numbers/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=are-mass-shootings-really-random-events-a-look-at-the-us-numbers">two</a> very <a href="http://www.empiricalzeal.com/2012/12/21/what-does-randomness-look-like/">interesting</a> blog posts about what does randomness truly look like and I actually learned something practical about Poisson distributions.  I first learned about Poisson Distributions in college as taught by my physics roommate, but all I understood was that it was a discrete distribution as opposed to the continuous nature of Gaussian distributions.  However, if you asked me where to apply Poisson distributions, I probably would be at a lost.  Now, I&rsquo;ve learned one interesting application is it could help answer if an observed pattern of events are expected or if something else is happening.  For example, take the average number of people attacked by sharks every year.  According to Wikipedia, it&rsquo;s around 100 worldwide with about 17 fatalities.  As most people intuitively know, just because the average is 100, that doesn&rsquo;t mean that there will be exactly 100 shark attacks this year or next year, it just means that it is the average that it tends to be.  Now suppose we observe a few years in a row of higher shark-attack activity, say 150-200, the question one might ask is: &ldquo;is this streak just a random coincidence or is there an actual change in the underlying pattern?&rdquo;  Thanks to the above mentioned blog-posts, one can use a Poisson distribution to help answer that question.</p>
+
+<p>Therefore, for my next blog post (still not sure on what publishing schedule to work with, but I recently read some good advice in that I should focus on quality not quantity with blog-posts), I will try to answer a question that popped into my mind recently.  Lately, there has been been a lot of a kerfuffle lately in NYC about subway deaths (sorry for the morbidity that follows).  There has been an unusually high amount of deaths in the subway and it&rsquo;s received a lot of attention in the media and by the Mayor&rsquo;s office.  Given the current rate, the media is saying there will be <a href="http://www.businessinsider.com/nyc-on-pace-for-nearly-100-subways-deaths-in-2013-2013-1">100 subway deaths this year</a> (double that of last year), which my intuition thinks is just flat-out wrong and can be statistically disproven using a Poisson Distribution.  So, I&rsquo;ll gather up historical data, try to apply a Poisson distribution and see if I can show that this is just a random streak instead of a more serious trend.  Perhaps a bit more ambitiously, I wonder if I could try to forecast how many subway deaths will actually occur this year.</p>
+]]></content>
+  </entry>
+  
+</feed>

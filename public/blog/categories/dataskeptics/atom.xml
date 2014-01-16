@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: DataSkeptics | Data Wonder]]></title>
+  <link href="http://http://datawonder.co//blog/categories/dataskeptics/atom.xml" rel="self"/>
+  <link href="http://http://datawonder.co//"/>
+  <updated>2014-01-16T01:08:08-05:00</updated>
+  <id>http://http://datawonder.co//</id>
+  <author>
+    <name><![CDATA[Mark Veronda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Data Skeptics WSJ MeetUp]]></title>
+    <link href="http://http://datawonder.co//blog/2014/01/15/data-skeptics-wsj-meetup/"/>
+    <updated>2014-01-15T23:17:00-05:00</updated>
+    <id>http://http://datawonder.co//blog/2014/01/15/data-skeptics-wsj-meetup</id>
+    <content type="html"><![CDATA[<p>Happy New Year, World!  I have been attending a lot of MeetUps related to data and have been learning a lot along the way.  The most recent MeetUp I attended was the <a href="http://www.meetup.com/The-NYC-Data-Skeptics-Meetup/events/156526602/">NYC Data Skeptics Society</a> on January 14 hosted at Huffington Post&rsquo;s headquarters in NYC.  I felt it was appropriate to share with the world some of the lessons learned.</p>
+
+<p>In addition to all the MeetUps attended, I recently read an excellent and inspiring book called <a href="http://www.amazon.com/Big-Data-Revolution-Transform-Think-ebook/dp/B009N08NKW/ref=sr_1_1?ie=UTF8&amp;qid=1389828747&amp;sr=8-1&amp;keywords=big+data">&ldquo;Big Data: A Revolution That Will Transform How We Live, Work and Think&rdquo;</a>, written by Viktor Mayer-Schönberger and Kenneth Cukier.  Several ideas and concepts from this book came to mind while at the MeetUp.</p>
+
+<p>The MeetUp featured two journalists from the Wall Street Journal, Tom McGinty and Rob Barry presenting the investigative work they did while researching <a href="http://online.wsj.com/article/SB10001424052702303330204579251191895420138.html">an article about the Asiana Flight 214 crash</a>.  A more appropriate title for the two might be data-driven journalists, who instead of conducting traditional journalism ala DeepThroat, actually do the work of a data scientist by finding and collecting real-world datasets and then extracting information that is then used to support their journalism.</p>
+
+<p>The most important lesson learned from this MeetUp is to be skeptical of your data throughout the full data analysis pipeline.  This ties in beautifully with the whole purpose of the Data Skeptic MeetUp group. Tom and Rob really drove home this point by demonstrating multiple times where they had data or results, but then they applied healty skepticism only to discover it was wrong and that they had to try again.  They even went as far as to visualize over 900 examples of initial results to confirm if it was accurate.  Although this sounds extreme, they needed to be extra sure that the data supports their journalism.</p>
+
+<p>There were two more key points I learned from this excellent talk.  First, there is a massive amount of extremely valuable data that is simply being thrown away.  One therefore must be resourceful to get all the data they might need to answer a question.  Secondly, two concepts from the &ldquo;Big Data&rdquo; book I read are highlighted by this talk.  The power of bringing in multiple datasets is exemplified by how Tom and Rob were able to make interesting conclusions beyond the initial datasets they found.   The other important concept, to quote from the book: &ldquo;The era of big data challenges the way we live and interact with the world. Most strikingly, society will need to shed some of its obsession for causality in exchange for simple correlations: not knowing why but only what. This overturns centuries of established practices and challenges our most basic understanding of how to make decisions and comprehend reality.&rdquo; (Kindle location 108 of Chapter 1).  This was a concept that I was initially skeptical of (as most people should be), but I have now grown to accept.  Rob and Tom demonstrated this brave new world as evoked by the book because there were many points in the talk where, instead of looking for causation, they used data and correlation to guide their reporting.  Yes it&rsquo;s true the correlation does not imply causation, but when sifting through massive datasets and investigating new ideas, it can help tremendously with the early stages of a new investigation.</p>
+
+<p>It was exciting to see data being applied to areas we don&rsquo;t traditionally think of as being a Data Scientist&rsquo;s domain.  I hope Rob and Tom represent the future of journalism, one where there is more objective, fact-based reporting that actually looks at and provides the data.  This is a much needed change I would like to see along with a shift away from instant reporting based on gut-feelings. Whenever a major event occurs, I simply refuse to watch or read anything about it beyond the intial details in real time.  The only way &lsquo;accurate&rsquo; information can come out in real time reporting is through machines that can intelligently sift through and determine what is &ldquo;truth.&rdquo;  Unfortuantely, incidents like the <a href="http://www.huffingtonpost.com/mark-cuban/twitter-hackcrash_b_3202069.html">Twitter Terror Error of 2013</a> (I&rsquo;m not talking about TWTR stock) suggests that we have long way to <em>wander</em> toward that goal.</p>
+]]></content>
+  </entry>
+  
+</feed>
