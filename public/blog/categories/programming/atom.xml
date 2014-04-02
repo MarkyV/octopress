@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Data Wonder]]></title>
   <link href="http://http://datawonder.co//blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://http://datawonder.co//"/>
-  <updated>2014-04-01T23:55:42-04:00</updated>
+  <updated>2014-04-02T00:05:59-04:00</updated>
   <id>http://http://datawonder.co//</id>
   <author>
     <name><![CDATA[Mark Veronda]]></name>
@@ -14,21 +14,19 @@
 
   
   <entry>
-    <title type="html"><![CDATA[On Testing Guava Caches]]></title>
-    <link href="http://http://datawonder.co//blog/2014/03/28/testing-guava-caches/"/>
-    <updated>2014-03-28T19:27:00-04:00</updated>
-    <id>http://http://datawonder.co//blog/2014/03/28/testing-guava-caches</id>
+    <title type="html"><![CDATA[On Testing Guava Caches and Time]]></title>
+    <link href="http://http://datawonder.co//blog/2014/04/02/testing-guava-caches/"/>
+    <updated>2014-04-02T00:00:00-04:00</updated>
+    <id>http://http://datawonder.co//blog/2014/04/02/testing-guava-caches</id>
     <content type="html"><![CDATA[<p>TLDR: Do not forget your scale when dealing with anything related to time, whether or not you are programming.  Always, always, always say &ldquo;10 nanoseconds&rdquo; and never just &ldquo;10&rdquo;.</p>
 
-<p>I had a frustrating problem at work where I had written a few quick lines of code and found myself finagling the testing for longer than I initially expected. The lesson I learned, as provided in the TLDR, actually came from a book I was reading at the same time called <a href="http://markburgess.org/certainty.html">&ldquo;In Search of Certainty&rdquo;</a>.  The book is written by Mark Burgess, and I must say that I am shocked at how few people know about one of the most foreward thinking Computer Scientists currently around.  Equally as few people have heard of <a href="https://www.youtube.com/watch?v=4CCXs4Om5pY">CFEngine</a>, which should not need introduction as it was literally 10 years ahead of everyone else.  The few lines of code I wrote was a decorator to add caching functionality.</p>
+<p>I had a frustrating problem where I had written a few quick lines of code and found myself finagling the testing for longer than I initially expected. The lesson I learned, as provided in the TLDR, actually came from a book I was reading at the same time called <a href="http://markburgess.org/certainty.html">&ldquo;In Search of Certainty&rdquo;</a>.  The book is written by Mark Burgess, and I must say that I am shocked at how few people know about one of the most foreword thinking Computer Scientists currently around.  Equally as few people have heard of <a href="https://www.youtube.com/watch?v=4CCXs4Om5pY">CFEngine</a>, which should not need introduction as it was literally 10 years ahead of everyone else.  The few lines of code I wrote was a decorator to add caching functionality.</p>
 
 <p>The caching part was a cakewalk because I knew from the start I would use Google <a href="https://code.google.com/p/guava-libraries/">Guava&rsquo;s</a> <a href="http://stackoverflow.com/a/4543114">amazing</a> <a href="http://gubendran.blogspot.com/2012/06/google-guava-collections-are-awesome.html">library</a> that already provides extensive, configurable and battle-tested functionality.  I would like to give a big tip of the hat I don&rsquo;t wear to the authors of the library for providing this to the world.  One neat example of how well thought out the library is when I wanted to have a <a href="http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/cache/RemovalListener.html">RemovalListener</a> (code to run upon cache eviction) only run on keys that expired due to access time and not keys that are manually evicted.  I spent a few minutes thinking of a solution but when I started to code it up and took another look at the Guava docs, sure enough, the option is right there and is a simple matter of asking the RemovalNotification object wasEvicted().  Just simply amazing.</p>
 
-<p>The problem I was stuck on was getting the cache eviction to actually happen during testing.  Since I saw a good opportunity to apply TDD here, I actually did write my tests ahead of time.  Which was a fortunate thing becuase I knew I wasn&rsquo;t finished based on a failing the two tests involving a cache eviction.  The second test I wrote was to ensure expiry occurrs after the <em>first</em> write for any key, not any subsequent writes. That the RemovalListener was not running and cache eviction not happening at all was painfully obvious by the few missing lines of test coverage.</p>
+<p>The problem I was stuck on was getting the cache eviction to actually happen during testing.  Since I saw a good opportunity to apply TDD here, I actually did write my tests ahead of time.  Which was a fortunate thing because I knew I wasn&rsquo;t finished due to the two failing tests involving a cache eviction.  The second test I wrote was to ensure expiry occurs after the <em>first</em> write for any key, not any subsequent writes. That the RemovalListener was not running and cache eviction not happening at all was painfully obvious by the few missing lines of test coverage.</p>
 
-<p>It turned out the problem with my test was with my usage of the <a href="http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/base/Ticker.html">Ticker</a> interface, which is quite the footnote in the documentation and discussion on testing with Guava&rsquo;s cache. The code I wrote said &lsquo;+10&rsquo; to advance time by what I presumed was 10 milliseconds.  I eventually came to the smack-of-the-forehead realization that Ticker is based on nanoseconds and therefore, when advancing its time readout, you need to advance it by TimeUnit.Milliseconds.toNanos(10) nanoseconds (AKA: 10,000,000) and not 10.  Finally, the testboard went green and now I can wire the cache in and wrap up my workweek in a New York minute.</p>
-
-<p>Normally, wiring in a decorated object takes one minute flat (regardless of whether you&rsquo;re using Spring or Guice), but unfortunately, I&rsquo;m working in an environment right now that doesn&rsquo;t have any <a href="http://stackoverflow.com/questions/130794/what-is-dependency-injection">Dependency Injection (DI)</a>.  Thus, it is as if one was writing code in notepad  with your hands tied behind your back.  Although maybe it&rsquo;s not quite that bad and one could use a modern IDE, but your hands are still tied behind your back. Without DI, it is not easy to casually pass in mocked objects for testing.  At least, that is what it feels like after having been used to DI for quite a while.</p>
+<p>It turned out that the problem with my tests was with my usage of the <a href="http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/base/Ticker.html">Ticker</a> interface, which is quite the footnote in the documentation and discussion on testing with Guava&rsquo;s cache. The code I wrote said &lsquo;+10&rsquo; to advance time by what I presumed was 10 milliseconds.  I eventually came to the smack-of-the-forehead realization that Ticker is based on nanoseconds and therefore, when advancing its time readout, you need to advance it by TimeUnit.Milliseconds.toNanos(10) nanoseconds (AKA: 10,000,000) and not 10.  Finally, the testboard went green quickly followed by wiring up the cache and thus wrapping up my workweek in a New York minute.</p>
 ]]></content>
   </entry>
   

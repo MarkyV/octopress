@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Java | Data Wonder]]></title>
-  <link href="http://http://datawonder.co//blog/categories/java/atom.xml" rel="self"/>
+  <title><![CDATA[Category: NotesToSelf | Data Wonder]]></title>
+  <link href="http://http://datawonder.co//blog/categories/notestoself/atom.xml" rel="self"/>
   <link href="http://http://datawonder.co//"/>
   <updated>2014-04-02T00:05:59-04:00</updated>
   <id>http://http://datawonder.co//</id>
