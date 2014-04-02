@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>A Detour - Data Wonder</title>
+  <title>On Testing Guava Caches - Data Wonder</title>
   <meta name="author" content="Mark Veronda">
 
   
-  <meta name="description" content="I decided to take a small detour along my data-driven path because, as mentioned in my previous post, I don&rsquo;t quite have supreme expertise as a &hellip;">
+  <meta name="description" content="TLDR: Do not forget your scale when dealing with anything related to time, whether or not you are programming. Always, always, always say &ldquo;10 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://http://datawonder.co//blog/2012/12/19/a-detour">
+  <link rel="canonical" href="http://http://datawonder.co//blog/2014/03/28/testing-guava-caches">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Data Wonder" type="application/atom+xml">
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">A Detour</h1>
+      <h1 class="entry-title">On Testing Guava Caches</h1>
     
     
       <p class="meta">
@@ -96,16 +96,24 @@
   
 
 
-<time datetime="2012-12-19T00:00:00-05:00" pubdate data-updated="true">Dec 19<span>th</span>, 2012</time>
+<time datetime="2014-03-28T19:27:00-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I decided to take a small detour along my data-driven path because, as mentioned in my previous post, I don&rsquo;t quite have supreme expertise as a software developer.  So my more immediate short-term goal is to continue down that path, but my side-project is still related in a way.  I will be working on a quick Rails application.  Why Rails?  My experience and background mostly point to me being solely a Java programmer and although I have dabled in other languages throughout school and on my own, it&rsquo;s high time I &ldquo;gain my own experience&rdquo; rather than relying on a job to provide me with a well-rounded background.  So unfortunately, at this point I sound a lot like the type of person Steve Yegge <a href="https://sites.google.com/site/steveyegge2/five-essential-phone-screen-questions">declares as an anti-pattern for hiring</a> a candidate (tl;dr, see &ldquo;Bad-Sign #1 at the bottom, although I can handily answer those questions as posed) and I am going to change that with this application by learning a bit of Rails as I write this quick app.  Another reason is that I have always enjoyed the neat stuff that Ruby provides and I am using Heroku as my hosting solution, so the Rails integration is something to look forward to playing around with.</p>
+<div class="entry-content"><p>TLDR: Do not forget your scale when dealing with anything related to time, whether or not you are programming.  Always, always, always say &ldquo;10 nanoseconds&rdquo; and never just &ldquo;10&rdquo;.</p>
 
-<p>What is it that I will be writing?  It&rsquo;s an application to keep track of my 10,000 hour goal and how much time I have spent on it.  Shockingly on GitHub, there is no project called &ldquo;YakShaving&rdquo; and so that is what my project will be called.  For some readers, you may be wondering why &ldquo;YakShaving&rdquo; and why it is shocking there is no project called that.</p>
+<p>I had a frustrating problem at work where I had written a few quick lines of code and found myself finagling the testing for longer than I initially expected. The lesson I learned, as provided in the TLDR, actually came from a book I was reading at the same time called <a href="http://markburgess.org/certainty.html">&ldquo;In Search of Certainty&rdquo;</a>.  The book is written by Mark Burgess, and I must say that I am shocked at how few people know about one of the most foreward thinking Computer Scientists currently around.  Equally as few people have heard of <a href="https://www.youtube.com/watch?v=4CCXs4Om5pY">CFEngine</a>, which should not need introduction as it was literally 10 years ahead of everyone else.  The few lines of code I wrote was a decorator to add caching functionality.</p>
+
+<p>The caching part was a cakewalk because I knew from the start I would use Google <a href="https://code.google.com/p/guava-libraries/">Guava&rsquo;s</a> <a href="http://stackoverflow.com/a/4543114">amazing</a> <a href="http://gubendran.blogspot.com/2012/06/google-guava-collections-are-awesome.html">library</a> that already provides extensive, configurable and battle-tested functionality.  I would like to give a big tip of the hat I don&rsquo;t wear to the authors of the library for providing this to the world.  One neat example of how well thought out the library is when I wanted to have a <a href="http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/cache/RemovalListener.html">RemovalListener</a> (code to run upon cache eviction) only run on keys that expired due to access time and not keys that are manually evicted.  I spent a few minutes thinking of a solution but when I started to code it up and took another look at the Guava docs, sure enough, the option is right there and is a simple matter of asking the RemovalNotification object wasEvicted().  Just simply amazing.</p>
+
+<p>The problem I was stuck on was getting the cache eviction to actually happen during testing.  Since I saw a good opportunity to apply TDD here, I actually did write my tests ahead of time.  Which was a fortunate thing becuase I knew I wasn&rsquo;t finished based on a failing the two tests involving a cache eviction.  The second test I wrote was to ensure expiry occurrs after the <em>first</em> write for any key, not any subsequent writes. That the RemovalListener was not running and cache eviction not happening at all was painfully obvious by the few missing lines of test coverage.</p>
+
+<p>It turned out the problem with my test was with my usage of the <a href="http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/base/Ticker.html">Ticker</a> interface, which is quite the footnote in the documentation and discussion on testing with Guava&rsquo;s cache. The code I wrote said &lsquo;+10&rsquo; to advance time by what I presumed was 10 milliseconds.  I eventually came to the smack-of-the-forehead realization that Ticker is based on nanoseconds and therefore, when advancing its time readout, you need to advance it by TimeUnit.Milliseconds.toNanos(10) nanoseconds (AKA: 10,000,000) and not 10.  Finally, the testboard went green and now I can wire the cache in and wrap up my workweek in a New York minute.</p>
+
+<p>Normally, wiring in a decorated object takes one minute flat (regardless of whether you&rsquo;re using Spring or Guice), but unfortunately, I&rsquo;m working in an environment right now that doesn&rsquo;t have any <a href="http://stackoverflow.com/questions/130794/what-is-dependency-injection">Dependency Injection (DI)</a>.  Thus, it is as if one was writing code in notepad  with your hands tied behind your back.  Although maybe it&rsquo;s not quite that bad and one could use a modern IDE, but your hands are still tied behind your back. Without DI, it is not easy to casually pass in mocked objects for testing.  At least, that is what it feels like after having been used to DI for quite a while.</p>
 </div>
 
 
@@ -128,12 +136,12 @@
   
 
 
-<time datetime="2012-12-19T00:00:00-05:00" pubdate data-updated="true">Dec 19<span>th</span>, 2012</time>
+<time datetime="2014-03-28T19:27:00-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/meta/'>Meta</a>, <a class='category' href='/blog/categories/sideproject/'>SideProject</a>
+    <a class='category' href='/blog/categories/guava/'>Guava</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/programming/'>Programming</a>
   
 </span>
 
@@ -142,7 +150,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://http://datawonder.co//blog/2012/12/19/a-detour/" data-via="MarkVeronda" data-counturl="http://http://datawonder.co//blog/2012/12/19/a-detour/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://http://datawonder.co//blog/2014/03/28/testing-guava-caches/" data-via="MarkVeronda" data-counturl="http://http://datawonder.co//blog/2014/03/28/testing-guava-caches/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -155,10 +163,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/12/17/hello-world/" title="Previous Post: Hello World!">&laquo; Hello World!</a>
+        <a class="basic-alignment left" href="/blog/2014/01/15/data-skeptics-wsj-meetup/" title="Previous Post: Data Skeptics WSJ MeetUp">&laquo; Data Skeptics WSJ MeetUp</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/01/30/first-data-challenge/" title="Next Post: First Data Challenge">First Data Challenge &raquo;</a>
       
     </p>
   </footer>
